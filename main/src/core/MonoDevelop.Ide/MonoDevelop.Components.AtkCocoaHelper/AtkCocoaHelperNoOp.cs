@@ -169,6 +169,11 @@ namespace MonoDevelop.Components.AtkCocoaHelper
 		public event EventHandler PerformShowDefaultUI;
 		public event EventHandler PerformShowPopupMenu;
 
+		public string [] Actions { get; set; }
+		public string AccessibilityIdentifier { get; set; }
+		public string AccessibilityLabel { get; set; }
+		public bool AccessibilityHidden { get; set; }
+
 		public void AddAccessibleChild (IAccessibilityElementProxy child)
 		{
 		}
@@ -214,61 +219,65 @@ namespace MonoDevelop.Components.AtkCocoaHelper
 		}
 	}
 
-	public class AccessibilityElementButtonProxy
+	public class AccessibilityElementButtonProxy : AccessibilityElementProxy
 	{
+		public virtual bool AccessibilityPerformPress ()
+		{
+			throw new NotImplementedException ();
+		}
 	}
 
-	public abstract class AccessibilityElementNavigableStaticTextProxy : IAccessibilityNavigableStaticText
+	public abstract class AccessibilityElementNavigableStaticTextProxy : AccessibilityElementProxy, IAccessibilityNavigableStaticText
 	{
-		public int InsertionPointLineNumber {
+		public virtual int InsertionPointLineNumber {
 			get {
 				throw new NotImplementedException ();
 			}
 		}
 
-		public int NumberOfCharacters {
+		public virtual int NumberOfCharacters {
 			get {
 				throw new NotImplementedException ();
 			}
 		}
 
-		public string Value {
+		public virtual string Value {
 			get {
 				throw new NotImplementedException ();
 			}
 		}
 
-		public Rectangle GetFrameForRange (AtkCocoa.Range range)
+		public virtual Rectangle GetFrameForRange (AtkCocoa.Range range)
 		{
 			throw new NotImplementedException ();
 		}
 
-		public int GetLineForIndex (int index)
+		public virtual int GetLineForIndex (int index)
 		{
 			throw new NotImplementedException ();
 		}
 
-		public AtkCocoa.Range GetRangeForIndex (int index)
+		public virtual AtkCocoa.Range GetRangeForIndex (int index)
 		{
 			throw new NotImplementedException ();
 		}
 
-		public AtkCocoa.Range GetRangeForLine (int line)
+		public virtual AtkCocoa.Range GetRangeForLine (int line)
 		{
 			throw new NotImplementedException ();
 		}
 
-		public AtkCocoa.Range GetRangeForPosition (Point position)
+		public virtual AtkCocoa.Range GetRangeForPosition (Point position)
 		{
 			throw new NotImplementedException ();
 		}
 
-		public string GetStringForRange (AtkCocoa.Range range)
+		public virtual string GetStringForRange (AtkCocoa.Range range)
 		{
 			throw new NotImplementedException ();
 		}
 
-		public AtkCocoa.Range GetStyleRangeForIndex (int index)
+		public virtual AtkCocoa.Range GetStyleRangeForIndex (int index)
 		{
 			throw new NotImplementedException ();
 		}
